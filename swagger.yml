@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Azure OpenAI Resume Ranking API
+  version: "1.0.0"
+  description: |
+    This API provides two endpoints:
+      - **POST /extract-criteria**: Extract ranking criteria from a job description file (PDF or DOCX).
+      - **POST /score-resumes**: Score resumes against provided ranking criteria and return a CSV file.
+servers:
+  - url: http://localhost:8038
+paths:
+  /extract-criteria:
+    post:
+      summary: Extract Ranking Criteria from Job Description
+      description: |
+        Accepts a job description file (PDF/DOCX) and returns key ranking criteria as a JSON array.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Job description file (PDF or DOCX)
+      responses:
+        '200':
+          description: Successfully extracted criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  criteria:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "Must have certification XYZ"
+                      - "5+ years of experience in Python development"
+                      - "Strong background in Machine Learning"
+        '400':
+          description: Bad Request. File not provided or invalid.
+  /score-resumes:
+    post:
+      summary: Score Resumes Against Extracted Criteria
+      description: |
+        Accepts ranking criteria and multiple resume files (PDF/DOCX), scores each resume against the criteria,
+        and returns a CSV file with candidate names, individual criterion scores, and a total score.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                criteria:
+                  type: string
+                  description: A JSON list of ranking criteria. Example:["Criterion1", "Criterion2"]
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: One or more resume files (PDF or DOCX)
+      responses:
+        '200':
+          description: CSV file containing candidate scores
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request. Missing criteria or files.
+        '500':
+          description: Internal Server Error.
