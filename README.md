@@ -131,30 +131,20 @@ Example cURL Commands
 Extract Criteria:
 
 bash
-Copy
+
 curl -X POST "http://localhost:8038/extract-criteria" \
   -F "file=@/path/to/job_description.pdf"
 Score Resumes:
 
 bash
-Copy
+
 curl -X POST "http://localhost:8038/score-resumes" \
   -F 'criteria=["Must have certification XYZ", "5+ years of experience in Python development", "Strong background in Machine Learning"]' \
   -F "files=@/path/to/resume1.pdf" \
   -F "files=@/path/to/resume2.docx"
-Project Structure
-bash
-Copy
-azure-openai-resume-ranking/
-├── app.py                 # Main Flask application with endpoints
-├── requirements.txt       # List of dependencies
-├── README.md              # Documentation (this file)
-└── (other files/folders)  # Additional modules, test files, etc.
-Contribution Guidelines
-Fork the repository.
-Create a new feature branch.
-Commit your changes with clear messages.
-Open a pull request, describing your changes in detail.
-License
-This project is licensed under the MIT License. Feel free to modify and distribute as per the license terms.
+
+
+
+
+
 
