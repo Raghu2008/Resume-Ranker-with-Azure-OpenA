@@ -14,19 +14,19 @@ Architecture
 Requirements
 Setup
 Usage
+
 Endpoints
 1. Extract Criteria
 2. Score Resumes
 Example cURL Commands
 Project Structure
-Contribution Guidelines
-License
 Features
 Azure OpenAI Integration: Uses Azure OpenAI (GPT4_Omni) for robust natural language processing.
 File Handling: Supports PDF and DOCX file formats for both job descriptions and resumes.
 Swagger UI Documentation: Automatically generated documentation with Flasgger.
 Bulk Processing: Efficiently processes multiple resumes for automated scoring.
 RESTful API: Easily deployable and scalable solution using Flask.
+
 Architecture
 Flask App: Hosts the two main endpoints.
 LLM (Azure OpenAI):
@@ -50,7 +50,6 @@ Azure OpenAI API key and endpoint
 Install dependencies with:
 
 bash
-Copy
 pip install -r requirements.txt
 (Ensure your requirements.txt includes the necessary libraries.)
 
@@ -58,20 +57,17 @@ Setup
 Clone the Repository:
 
 bash
-Copy
 git clone https://github.com/<your-username>/Resume-Ranker-with-Azure-OpenA.git
 cd azure-openai-resume-ranking
 Install Dependencies:
 
 bash
-Copy
 pip install -r requirements.txt
 Configure Azure OpenAI:
 
 Set your Azure endpoint and API key in the code (or via environment variables).
 Example:
 python
-Copy
 endpoint = "https://<your-azure-endpoint>.openai.azure.com/"
 api_key = "YOUR_AZURE_API_KEY"
 deployment = "Your_model"
